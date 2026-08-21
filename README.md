@@ -110,6 +110,17 @@ app.use(createPasskeyAssociationRouter(config));
 ```
 
 The auth module creates a session after a verified sign-in. Regenerate the session ID at login if your existing session layer supports it.
+It installs its own `application/json` parser for its routes, so the Google, Apple, and passkey POST bodies work even when the host has not added a global JSON parser.
+
+## Starter smoke test
+
+After copying the folder into a TypeScript project with the listed server dependencies, run:
+
+```sh
+npx tsx --test auth-starter/server/auth-routes.smoke.test.ts
+```
+
+This starts an isolated Express app and confirms JSON requests reach the Google, Apple, passkey registration, and passkey sign-in POST routes. It deliberately uses malformed credentials and never contacts a real provider.
 
 ## Mobile integration
 
