@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "scheme": "yourapp",
+    "ios": {
+      "bundleIdentifier": "com.example.yourapp",
+      "associatedDomains": [
+        "webcredentials:auth.example.com"
+      ]
+    },
+    "android": {
+      "package": "com.example.yourapp"
+    },
+    "plugins": [
+      "expo-apple-authentication",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.YOUR_IOS_CLIENT_ID"
+        }
+      ]
+    ]
+  }
+}
