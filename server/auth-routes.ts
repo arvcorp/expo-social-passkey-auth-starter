@@ -1,4 +1,4 @@
-import { Router, type Request, type Response } from "express";
+import { json, Router, type Request, type Response } from "express";
 import type { Pool } from "pg";
 import { OAuth2Client } from "google-auth-library";
 import {
@@ -141,6 +141,9 @@ export function createAuthRouter({
 }) {
   requireConfig(config);
   const router = Router();
+  // Keep the starter self-contained: all provider and WebAuthn POST payloads
+  // are JSON, so adopters do not have to remember a separate global parser.
+  router.use(json());
   const googleClient = new OAuth2Client();
 
   router.get("/session", async (req, res) => {
